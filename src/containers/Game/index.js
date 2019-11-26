@@ -2,43 +2,23 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from 'actions'
-import { Config } from 'data/config.js';
 import Header from 'components/Header'
 import Question from 'components/Question'
 import QuitModal from 'components/Modal'
 import Timer from 'components/Timer'
 import { Button, Spinner} from 'react-bootstrap';
 
-
 class Game extends React.Component {
 
-    constructor(props) {
-      super(props)
-
-      this.state = {
-        questionNumber: 0,
-        showModal: false,
-        score: 0,
-        userChoices: [],
-        timer: Config.timer
-      }
-    }
-
     handleShow = () => {
-      this.setState({
-        show: true
-      })
+      this.props.modalShow();
     }
     handleClose = () => {
-      this.setState({
-        show: false
-      })
+      this.props.modalHide();
     }
     doSomethingBeforeUnload = (ev) => {
       // Do something
-      this.setState({
-        show: true
-      })
+      this.props.modalShow();
     }
     setupBeforeUnloadListenerCloseTab = () => {
         window.addEventListener("beforeunload", (ev) => {
@@ -49,17 +29,13 @@ class Game extends React.Component {
 
     setupBeforeUnloadListenerBrowserBack = () => {
     window.addEventListener('popstate', (event) => {
-      if (event.state) {
-        this.setState({
-          show: true
-        })
-      }
+      this.props.modalShow();
     }, false);
     };
 
     componentDidMount() {
-      
       this.props.fetchTrivia();
+      this.props.modalHide();
       window.history.pushState({name: "browserBack"}, "on browser back click", window.location.href);
       window.history.pushState({name: "browserBack"}, "on browser back click", window.location.href);
       this.setupBeforeUnloadListenerCloseTab();
@@ -72,31 +48,29 @@ class Game extends React.Component {
 
     handleNextQuestion = (ans) => {
       let resultOfChoice = false
-      let newScore = this.state.score;
-      const { questionNumber, score, userChoices} = this.state;
-      const correctAnswer = this.props.results[questionNumber].correct_answer;
-      const nextQuestionNumber = questionNumber + 1
+      let newScore = this.props.score;
+      const correctAnswer = this.props.results[this.props.questionNumber].correct_answer;
       
       if (ans === correctAnswer) {
         resultOfChoice = true
-        newScore = score + 1
-        this.setState({
-          score: newScore
-        })
+        newScore = newScore + 1
       }
-      const newUserChoices = userChoices.concat({"result": resultOfChoice ,"question":this.props.results[questionNumber].question, "correct_answer":this.props.results[questionNumber].correct_answer, "user_choice":ans})   
+      const newUserChoices = {choice: 
+        {"result": resultOfChoice,
+        "question":this.props.results[this.props.questionNumber].question, 
+        "correct_answer":this.props.results[this.props.questionNumber].correct_answer, 
+        "user_choice":ans
+        },
+        score:newScore}   
      
-      this.setState({
-        questionNumber : nextQuestionNumber,
-        timer: Config.timer,
-        userChoices: newUserChoices
-      })
+
+      this.props.setScores(newUserChoices)
+
       
-      
-      if (nextQuestionNumber  === this.props.results.length) {
+      if ((this.props.questionNumber + 1)  === this.props.results.length) {
           clearInterval(this.timerInterval);
-          this.props.history.push({pathname: '/results', state: { score: newScore, userChoices: newUserChoices }})
-      } 
+          this.props.history.push({pathname: '/results'})
+      }
     }
 
     render () {
@@ -108,11 +82,11 @@ class Game extends React.Component {
         </div>;
       }else{
         cardContent =  <div>
-        <Timer seconds={this.state.timer} onEnd={this.handleNextQuestion} />
+        <Timer seconds={30} onEnd={this.handleNextQuestion} />
         <Question 
-        questionNumber={this.state.questionNumber} 
-        handleNextQuestion={this.handleNextQuestion} 
-        result={this.props.results[this.state.questionNumber]}
+          questionNumber={this.props.questionNumber} 
+          handleNextQuestion={this.handleNextQuestion} 
+          result={this.props.results[this.props.questionNumber]}
         />
         <Button variant="secondary" onClick={this.handleShow}  size="sm">
         Give Up
@@ -121,10 +95,9 @@ class Game extends React.Component {
     /**/
     return (
       <div className="game">
-
         <Header/>
         {cardContent}
-        <QuitModal handleClose={this.handleClose} show={this.state.show}/>
+        <QuitModal handleClose={this.handleClose} show={this.props.show_modal}/>
       </div>
       )
     }
@@ -136,12 +109,20 @@ class Game extends React.Component {
     return {
       results: state.trivia.results,
       error: state.trivia.error,
-      loading: state.trivia.loading
+      loading: state.trivia.loading,
+      userChoices: state.trivia.userChoices,
+      score: state.trivia.score,
+      questionNumber: state.trivia.questionNumber,
+      show_modal: state.modal.show
     };
   };
   
   const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchTrivia: actions.fetchTrivia
+    fetchTrivia: actions.fetchTrivia,
+    resetScores: actions.resetScores,
+    setScores: actions.setScores,
+    modalShow: actions.modalShow,
+    modalHide: actions.modalHide
   }, dispatch);
   
   export default connect(

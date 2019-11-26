@@ -1,9 +1,8 @@
 import React from 'react'
-import { Config } from 'data/config.js';
 
 
 class Timer extends React.Component {
-
+/*
     constructor(props) {
       super(props)
       this.state = {
@@ -27,7 +26,7 @@ class Timer extends React.Component {
       }, 1000)
   
     }
-       /*static getDerivedStateFromProps(nextProps, prevState){
+       static getDerivedStateFromProps(nextProps, prevState){
    
       if(nextProps.seconds!==prevState.seconds){  
         
@@ -37,7 +36,7 @@ class Timer extends React.Component {
             else return null;
           }
     
- */
+ 
     UNSAFE_componentWillReceiveProps(nextProps){
       this.setState({
         seconds: nextProps.seconds
@@ -47,12 +46,12 @@ class Timer extends React.Component {
     componentWillUnmount() {
       clearInterval(this.timerInterval);
     }
-
+*/
     render() {
-      const {seconds} = this.state;
+      const {seconds} = this.props;
       return (
           <div className="timer">
-            <strong>{seconds}</strong> <br/>Seconds left
+            <strong>{seconds} </strong> <br/>Seconds left
           </div>
         )
     }

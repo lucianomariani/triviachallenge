@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Header from 'components/Header'
 import ResultsList from 'components/ResultsList'
 import Score from 'components/Score'
@@ -16,7 +17,7 @@ class Results extends React.Component {
  
  
   componentDidMount() {
-
+    //Simulates Loading Result , to add some Mistery ...
     this.timerInterval = setInterval(() => {
       if (this.state.waiting > 0) {
       this.setState(({ waiting }) => ({
@@ -30,23 +31,22 @@ class Results extends React.Component {
 
   render () {
  
-    const state = this.props.location.state;
-
+    const {userChoices, score} = this.props;
       let cardContent = '';
       if (this.state.waiting > 0) {
         cardContent = <div>
-        <Spinner animation="border" variant="light" />
+          <Spinner animation="border" variant="light" />
         </div>;
       }else{
         cardContent = <div> 
-          <Score score={state.score} total={Config.amount}/>
-        <p><Link to="/">
-        <Button variant="primary">Play Again</Button>
-        </Link>
+          <Score score={score} total={Config.amount}/>
+        <p>
+          <Link to="/">
+            <Button variant="primary">Play Again</Button>
+          </Link>
         </p>
-        <ResultsList userChoices={state.userChoices} />
+        <ResultsList userChoices={userChoices} />
         </div>
-
       }
 
     return (
@@ -59,4 +59,14 @@ class Results extends React.Component {
   }
 
 }
-export default Results
+const mapStateToProps = (state, ownProps) => { 
+  return {
+    userChoices: state.trivia.userChoices,
+    score: state.trivia.score
+  };
+};
+
+
+export default connect(
+  mapStateToProps,
+)(Results);
