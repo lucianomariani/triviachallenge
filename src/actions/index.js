@@ -1,4 +1,4 @@
-import { FETCH_TRIVIA_SUCCESS, FETCH_TRIVIA_ERROR, FETCH_TRIVIA_LOADING, SET_SCORES, DECREMENT_TIMER, MODAL_SHOW, MODAL_HIDE,RESET_SCORES} from './types'
+import { FETCH_TRIVIA_SUCCESS, FETCH_TRIVIA_ERROR, FETCH_TRIVIA_LOADING, SET_SCORES, DECREMENT_TIMER, RESET_TIMER, MODAL_SHOW, MODAL_HIDE,RESET_SCORES} from './types'
 import { Config } from 'data/config.js';
 
 const API_URL = process.env.REACT_APP_TRIVIA_API_URL;
@@ -64,6 +64,12 @@ export const resetScores =  (data) => {
 export const decrementTimer =  (data) => {
   return {
     type: DECREMENT_TIMER,
+    payload: data 
+  }
+};
+export const resetTimer =  (data) => {
+  return {
+    type: RESET_TIMER,
     payload: data 
   }
 };

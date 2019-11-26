@@ -10,7 +10,6 @@ function ResultsList(props) {
     const res = (item.result) ? <img src={image_ok} alt="ok"/> : <img src={image_wrong} alt="wrong"/>
     return (
       <tr key={i} className="results_choices">
-       
         <td >
         {res} 
         </td> 

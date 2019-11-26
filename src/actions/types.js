@@ -4,5 +4,6 @@ export const FETCH_TRIVIA_LOADING = 'FETCH_TRIVIA_LOADING';
 export const SET_SCORES = 'SET_SCORES';
 export const RESET_SCORES = 'RESET_SCORES';
 export const DECREMENT_TIMER = 'DECREMENT_TIMER';
+export const RESET_TIMER = 'RESET_TIMER';
 export const MODAL_HIDE = 'MODAL_HIDE';
 export const MODAL_SHOW = 'MODAL_SHOW';

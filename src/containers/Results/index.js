@@ -53,7 +53,6 @@ class Results extends React.Component {
       <div className="results">
         <Header/>
         {cardContent}
-       
       </div>
     )
   }

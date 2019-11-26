@@ -1,7 +1,9 @@
 
 import {FETCH_TRIVIA_SUCCESS, FETCH_TRIVIA_LOADING, FETCH_TRIVIA_ERROR ,SET_SCORES,RESET_SCORES } from '../actions/types';
+import shuffle from 'shuffle-array';
+
 const InitialState = {
-  results: '',
+  results: [],
   error: false,
   loading: false,
   userChoices: [],
@@ -16,6 +18,10 @@ export default function triviaReducer(state = InitialState, action) {
       newstate.error = false;
       newstate.loading = false;
       newstate.results = action.payload
+      newstate.results = newstate.results.map( (trivia_item) => {
+        trivia_item.answers = shuffle(trivia_item.incorrect_answers.concat(trivia_item.correct_answer));
+        return trivia_item
+      });
       return newstate;
     case FETCH_TRIVIA_LOADING:
       let newstate2 =  {...state};
