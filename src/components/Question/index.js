@@ -37,17 +37,14 @@ class Question extends React.Component {
     this.props.result ? 
     <div className="question_and_options">
       <Container>
-      <p>Hola</p>
       <div>  
-        <ProgressBar variant="success" now={(this.props.questionNumber + 1) * 100/Config.amount} label={`${this.props.questionNumber + 1}/${Config.amount}`} /> 
+          <ProgressBar variant="success" now={(this.props.questionNumber + 1) * 100/Config.amount} label={`${this.props.questionNumber + 1}/${Config.amount}`} /> 
       </div>
-      <h3 className="category"> {this.props.result.category} </h3>
+      <h3 className="category">{this.props.result.category}</h3>
         <Jumbotron>
           <Row>
             <Col>
-              <h2>  
-                 {he.decode(this.props.result.question)} 
-              </h2>
+              <h2>{he.decode(this.props.result.question)}</h2>
             </Col>
           </Row>
           <Row >

@@ -108,7 +108,7 @@ class Game extends React.Component {
         </div>;
       }else{
         cardContent =  <div>
-        <Timer seconds={this.state.timer} handleNextQuestion={this.handleNextQuestion} />
+        <Timer seconds={this.state.timer} onEnd={this.handleNextQuestion} />
         <Question 
         questionNumber={this.state.questionNumber} 
         handleNextQuestion={this.handleNextQuestion} 
