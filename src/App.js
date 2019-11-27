@@ -1,8 +1,8 @@
 import React from 'react';
-import Home from 'containers/Home';
+import Home from './containers/Home';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Game from "containers/Game";
-import Results from "containers/Results";
+import Game from "./containers/Game";
+import Results from "./containers/Results";
 
 
 function App() {
