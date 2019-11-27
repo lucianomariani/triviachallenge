@@ -17,6 +17,7 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - run: yarn test
       - run:
           name: Install LFTP
           command: |
@@ -41,6 +42,3 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
