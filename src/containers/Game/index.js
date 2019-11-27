@@ -56,7 +56,7 @@ class Game extends React.Component {
     }
 
     handleNextQuestion = (ans) => {
-      const {score, results, questionNumber, setScores} = this.props;
+      const {score, results, questionNumber, setScores, resetTimer} = this.props;
       let resultOfChoice = false
       let newScore = score;
       const correctAnswer = results[questionNumber].correct_answer;
@@ -73,6 +73,7 @@ class Game extends React.Component {
         },
         score:newScore}   
       setScores(newUserChoices)
+      resetTimer();
       if ((questionNumber + 1)  === results.length) {
           clearInterval(this.timerInterval);
           this.props.history.push({pathname: '/results'})
