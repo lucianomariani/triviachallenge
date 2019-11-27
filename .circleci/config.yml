@@ -38,7 +38,7 @@ jobs:
           name: Build and Send Via SFTP
           command:  |
             yarn run build
-            lftp -c "open -u triviachallenge@lucianomariani.com,7r1v14C24 ftp://c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build /"
+            lftp -c "open -u triviachallenge@lucianomariani.com,7r1v14C24 c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build /"
 
       - save_cache:
           paths:
