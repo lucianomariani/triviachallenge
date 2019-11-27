@@ -17,7 +17,7 @@ function Introduction(props) {
     <Jumbotron>
       <h2>You will be presented with  {questions} {typeLengend} questions </h2>
       <p>
-        Can you score 100%?
+        Can You Score 100%?
       </p>
       <p>
         <Link to="/game">
