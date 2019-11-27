@@ -1,5 +1,5 @@
 import {DECREMENT_TIMER, RESET_TIMER } from '../actions/types';
-import { Config } from 'data/config.js';
+import { Config } from '../data/config.js';
 const InitialState = {
   seconds: Config.timer,
 }

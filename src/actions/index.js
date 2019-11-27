@@ -1,5 +1,5 @@
 import { FETCH_TRIVIA_SUCCESS, FETCH_TRIVIA_ERROR, FETCH_TRIVIA_LOADING, SET_SCORES, DECREMENT_TIMER, RESET_TIMER, MODAL_SHOW, MODAL_HIDE,RESET_SCORES} from './types'
-import { Config } from 'data/config.js';
+import { Config } from '../data/config.js';
 
 const API_URL = process.env.REACT_APP_TRIVIA_API_URL;
 
