@@ -34,7 +34,7 @@ jobs:
           command:  |
             yarn install
             yarn run build
-            lftp -c "open -u triviachallenge@lucianomariani.com,7r1v14C24 ftp://triviachallenge.lucianomariani.com; set ssl:verify-certificate no; mirror -R ./build /"
+            lftp -c "open -u triviachallenge@lucianomariani.com,7r1v14C24 ftp://c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build /"
      
 
       - save_cache:
