@@ -35,3 +35,4 @@ It correctly bundles React in production mode and optimizes the build for the be
 ## Demo
 
 Available on [https://triviachallenge.lucianomariani.com/](https://triviachallenge.lucianomariani.com/)
+[https://triviachallenge.herokuapp.com/](https://triviachallenge.herokuapp.com/)
