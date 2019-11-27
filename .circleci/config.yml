@@ -30,16 +30,13 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: Install and test
+          name: Build test and upload
           command:  |
             yarn install
             yarn test
-      - run:
-          name: Build and Send Via SFTP
-          command:  |
             yarn run build
             lftp -c "open -u triviachallenge@lucianomariani.com,7r1v14C24 c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build /test"
-
+     
       - save_cache:
           paths:
             - node_modules
