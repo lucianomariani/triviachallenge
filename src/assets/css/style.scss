@@ -221,7 +221,12 @@ header {
   height: 200px;
   margin: 50px;
 }
-
+.results .results_choices .mobile p {
+  text-align: center;
+}
+.results .results_choices .desktop {
+  display: none;
+}
 
 @media (min-width: 768px) {
   header {
@@ -241,6 +246,12 @@ header {
     & h2 {
       font-size: calc(#{$question-size}  + 10px);
     }
+  }
+  .results .results_choices .desktop {
+    display: table-cell;
+  }
+  .results .results_choices .mobile {
+    display: none;
   }
 }
 
