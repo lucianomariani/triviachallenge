@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Question from './index.js';
-import {Button,  Jumbotron, Row, Col,Container, ProgressBar} from 'react-bootstrap';
+import {Button, ProgressBar} from 'react-bootstrap';
 import he from 'he'
 
 const trivia = {"response_code":0,"results":

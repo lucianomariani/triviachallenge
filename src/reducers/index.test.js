@@ -2,7 +2,7 @@ import reducer from './index.js'
 import modal_reducer from './modal.js'
 import timer_reducer from './timer.js'
 import * as types  from '../actions/types';
-import { Config } from 'data/config.js';
+import { Config } from '../data/config.js';
 
 const initialState = {
   "modal":  {
