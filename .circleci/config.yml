@@ -35,7 +35,7 @@ jobs:
             yarn install
             yarn test
             yarn run build
-            lftp -c "open -u triviachallenge@lucianomariani.com,G2ideliver124 ftp://c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build /"
+            lftp -c "open -u trivia@c1490737.ferozo.com,Challenge523 ftp://c1490737.ferozo.com; set ssl:verify-certificate no; mirror -R ./build public_html/trivia"
      
       - save_cache:
           paths:
