@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button,  Jumbotron, Row, Col,Container, ProgressBar} from 'react-bootstrap';
 import he from 'he'
+import PropTypes from 'prop-types';
+
 
 class Question extends React.Component {
   handleClick = (e) => {
@@ -50,4 +52,11 @@ class Question extends React.Component {
     )
   }
 }
+
+Question.propTypes = {
+  handleNextQuestion: PropTypes.func,
+  questionNumber: PropTypes.number, 
+  questionsTotal: PropTypes.number,
+  result: PropTypes.object
+};
 export default Question

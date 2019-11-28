@@ -5,7 +5,7 @@ import * as actions from 'actions'
 import Header from 'components/Header'
 import Question from 'components/Question'
 import QuitModal from 'components/Modal'
-import { Button, Spinner} from 'react-bootstrap';
+import { Button, Spinner, Alert} from 'react-bootstrap';
 
 class Game extends React.Component {
 
@@ -33,22 +33,24 @@ class Game extends React.Component {
     };
 
     componentDidMount() {
-      this.props.fetchTrivia();
-      this.props.modalHide();
+      const { modalHide, fetchTrivia, resetTimer, decrementTimer} = this.props;
+      resetTimer();
+      fetchTrivia();
+      modalHide();
+
       window.history.pushState({name: "browserBack"}, "on browser back click", window.location.href);
       window.history.pushState({name: "browserBack"}, "on browser back click", window.location.href);
       this.setupBeforeUnloadListenerCloseTab();
       this.setupBeforeUnloadListenerBrowserBack();
-
       this.timerInterval = setInterval(() => {
-        this.props.decrementTimer()
+        decrementTimer()
         if (this.props.seconds === 0) {
           this.handleNextQuestion();
-          this.props.resetTimer();
+          resetTimer();
         }
       }, 1000)
 
-    }
+        }
 
    
     componentWillUnmount() {
@@ -82,14 +84,19 @@ class Game extends React.Component {
 
     render () {
 
-    const {questionNumber, results, loading, show_modal, seconds } = this.props
-    
+    const {error, questionNumber, results, loading, show_modal, seconds } = this.props
+      
       let cardContent = '';
-      if (loading) {
+      if (error) {
+        cardContent =  <Alert  variant='danger'>
+       Error Fetching data
+      </Alert>
+      }else if (loading) {
         cardContent = <div>
         <Spinner animation="border" variant="light" />
         </div>;
       }else{
+        
         cardContent =  <div>
         <div className="timer">
             <strong>{seconds} </strong> <br/>Seconds left
@@ -104,6 +111,8 @@ class Game extends React.Component {
         Give Up
        </Button></div>
       }
+
+     
     /**/
     return (
       <div className="game">
@@ -117,31 +126,31 @@ class Game extends React.Component {
 
 
 
-  const mapStateToProps = (state, ownProps) => { 
-    return {
-      results: state.trivia.results,
-      error: state.trivia.error,
-      loading: state.trivia.loading,
-      userChoices: state.trivia.userChoices,
-      score: state.trivia.score,
-      questionNumber: state.trivia.questionNumber,
-      show_modal: state.modal.show,
-      seconds: state.timer.seconds
-    };
+const mapStateToProps = (state, ownProps) => { 
+  return {
+    results: state.trivia.results,
+    error: state.trivia.error,
+    loading: state.trivia.loading,
+    userChoices: state.trivia.userChoices,
+    score: state.trivia.score,
+    questionNumber: state.trivia.questionNumber,
+    show_modal: state.modal.show,
+    seconds: state.timer.seconds
   };
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchTrivia: actions.fetchTrivia,
+  resetScores: actions.resetScores,
+  setScores: actions.setScores,
+  modalShow: actions.modalShow,
+  modalHide: actions.modalHide,
+  decrementTimer: actions.decrementTimer,
+  resetTimer: actions.resetTimer,
   
-  const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchTrivia: actions.fetchTrivia,
-    resetScores: actions.resetScores,
-    setScores: actions.setScores,
-    modalShow: actions.modalShow,
-    modalHide: actions.modalHide,
-    decrementTimer: actions.decrementTimer,
-    resetTimer: actions.resetTimer,
-    
-  }, dispatch);
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Game);
+}, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Game);

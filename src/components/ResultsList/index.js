@@ -3,6 +3,7 @@ import { Jumbotron, Container} from 'react-bootstrap';
 import image_ok from 'assets/images/ok.png';
 import image_wrong from 'assets/images/wrong.png';
 import he from 'he'
+import PropTypes from 'prop-types';
 
 function ResultsList(props) {
 
@@ -66,4 +67,8 @@ function ResultsList(props) {
     </div>
     )
 }
+
+ResultsList.propTypes = {
+  answers: PropTypes.array
+};
 export default ResultsList

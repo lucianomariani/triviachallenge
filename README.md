@@ -40,8 +40,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 ## Demo
 
 Available on 
-[https://triviachallenge.lucianomariani.com/](https://triviachallenge.lucianomariani.com/) 
-[https://triviachallenge.netlify.com/](https://triviachallenge.netlify.com/)
+* [https://triviachallenge.lucianomariani.com/](https://triviachallenge.lucianomariani.com/) 
+* [https://triviachallenge.netlify.com/](https://triviachallenge.netlify.com/)
+
+Wait for CI to pass test before deploy on Heroku
+
 [https://triviachallenge.herokuapp.com/](https://triviachallenge.herokuapp.com/)
 
 ## Screenshots

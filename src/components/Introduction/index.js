@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Jumbotron} from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function Introduction(props) {
 
@@ -27,4 +28,9 @@ function Introduction(props) {
     </Jumbotron>
     )
 }
+
+Introduction.propTypes = {
+  type: PropTypes.oneOf(['boolean', 'multiple', '']),
+  questions: PropTypes.number.isRequired
+};
 export default Introduction
