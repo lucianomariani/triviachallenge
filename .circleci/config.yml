@@ -35,7 +35,7 @@ jobs:
             yarn install
             yarn test
             yarn run build
-            lftp ftp://${username}:${password}@${hostname} -e "mirror -v -R ./build /public_html/trivia; quit"
+            lftp -c "open -u ftp@c1490737.ferozo.com,vaNA08tewe ftp://c1490737.ferozo.com; put -O /public_html/trivia /build"
       - save_cache:
           paths:
             - node_modules
