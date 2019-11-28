@@ -8,8 +8,13 @@ Click on Begin and start answering questions, after completing you will see your
 
 ## Config Parameters
 
-Use data/config.js to set trivia parameters available on the [API](https://opentdb.com/api_config.php)
-
+Use data/config.js to set trivia parameters available on the [API](https://opentdb.com/api_config.php), 
+Examples: 
+```json
+{ amount: 10, type: 'boolean', difficulty: '', category: '',encode:'' ,timer:20};
+{ amount: 20, type: 'multiple', difficulty: '', category: '',encode:'' ,timer:30};
+{ amount: 30, type: '', difficulty: 'hhard', category: 9,encode:'' ,timer:59};
+```
 ## Available Scripts
 
 In the project directory, you can run:
@@ -34,5 +39,15 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Demo
 
-Available on [https://triviachallenge.lucianomariani.com/](https://triviachallenge.lucianomariani.com/) and [https://triviachallenge.netlify.com/](https://triviachallenge.netlify.com/) and 
+Available on 
+[https://triviachallenge.lucianomariani.com/](https://triviachallenge.lucianomariani.com/) 
+[https://triviachallenge.netlify.com/](https://triviachallenge.netlify.com/)
 [https://triviachallenge.herokuapp.com/](https://triviachallenge.herokuapp.com/)
+
+## Screenshots
+
+![Screenshow Home](https://bucket.lucianomariani.com/g2ichallenge/screens/screen1.png)
+
+![Screenshow Game](https://bucket.lucianomariani.com/g2ichallenge/screens/screen2.png)
+
+![Screenshow Results](https://bucket.lucianomariani.com/g2ichallenge/screens/screen3.png)
