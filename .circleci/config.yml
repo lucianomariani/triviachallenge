@@ -7,25 +7,24 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - run:
+        - run:
             name: Install LFTP
             command: |
               sudo apt-get update;
               sudo apt-get install lftp;
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run:
-          name: install
-          command:  |
-            yarn install
-       - run:
-          name: test
-          command:  |
-            yarn test
+        - checkout
+        # Download and cache dependencies
+        - restore_cache:
+            keys:
+              - v1-dependencies-{{ checksum "package.json" }}
+              # fallback to using the latest cache if no exact match is found
+              - v1-dependencies-
+        - run:
+            name: Send Via SFTP
+            command:  |
+              yarn install
+              yarn test
+              
       - save_cache:
           paths:
             - node_modules
