@@ -7,11 +7,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-        - run:
-            name: Install LFTP
-            command: |
-              sudo apt-get update;
-              sudo apt-get install lftp;
         - checkout
         # Download and cache dependencies
         - restore_cache:
@@ -20,7 +15,7 @@ jobs:
               # fallback to using the latest cache if no exact match is found
               - v1-dependencies-
         - run:
-            name: Send Via SFTP
+            name: Install and Test
             command:  |
               yarn install
               yarn test
