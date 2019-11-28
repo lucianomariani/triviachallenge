@@ -10,7 +10,7 @@ Click on Begin and start answering questions, after completing you will see your
 
 Use data/config.js to set trivia parameters available on the [API](https://opentdb.com/api_config.php), 
 Examples: 
-```json
+```javascript
 { amount: 10, type: 'boolean', difficulty: '', category: '',encode:'' ,timer:20};
 { amount: 20, type: 'multiple', difficulty: '', category: '',encode:'' ,timer:30};
 { amount: 30, type: '', difficulty: 'hhard', category: 9,encode:'' ,timer:59};
