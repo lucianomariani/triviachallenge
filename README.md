@@ -1,6 +1,6 @@
 # Trivia Challenge, by Luciano Mariani
 
-This project was made for applying to G2i hiring platform. It's a Trivia game. 
+It's a Trivia game. 
 
 ## Instructions
 
